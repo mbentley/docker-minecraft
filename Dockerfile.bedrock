@@ -1,12 +1,14 @@
 FROM ubuntu:18.04
+MAINTAINER Matt Bentley <mbentley@mbentley.net>
 
-RUN apt-get update &&\
+RUN export MC_BEDROCK_VER="1.16.40.02" &&\
+  apt-get update &&\
   DEBIAN_FRONTEND=non-interactive apt-get install -y libcurl4 screen unzip wget &&\
   mkdir /opt/minecraft &&\
   cd /opt/minecraft &&\
-  wget https://minecraft.azureedge.net/bin-linux/bedrock-server-1.16.20.03.zip &&\
-  unzip bedrock-server-1.16.20.03.zip &&\
-  rm bedrock-server-1.16.20.03.zip &&\
+  wget "https://minecraft.azureedge.net/bin-linux/bedrock-server-${MC_BEDROCK_VER}.zip" &&\
+  unzip bedrock-server-${MC_BEDROCK_VER}.zip &&\
+  rm bedrock-server-${MC_BEDROCK_VER}.zip &&\
   rm -rf /var/lib/apt/lists/* &&\
   groupadd -g 511 mc &&\
   useradd -u 511 -g 511 -d /opt/minecraft mc &&\
