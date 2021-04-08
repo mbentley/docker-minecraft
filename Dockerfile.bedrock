@@ -15,7 +15,8 @@ RUN apt-get update &&\
   rm -rf /var/lib/apt/lists/* &&\
   groupadd -g 511 mc &&\
   useradd -u 511 -g 511 -d /opt/minecraft mc &&\
-  chown -R mc:mc /opt/minecraft
+  chown -R mc:mc /opt/minecraft &&\
+  chmod +x /opt/minecraft/bedrock_server
 
 USER mc
 WORKDIR /opt/minecraft
