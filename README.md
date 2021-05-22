@@ -1,13 +1,13 @@
 # mbentley/minecraft
 
-docker image for Minecraft
+docker image for Minecraft Bedrock
 based off of ubuntu:18.04
 
 To pull this image:
 `docker pull mbentley/minecraft`
 
 Example usage:
-`docker run -t --rm --name mc -p 19132:19132/udp mbentley/minecraft:bedrock`
+`docker run -t --rm --name mc -p 19132:19132/udp mbentley/minecraft`
 
 By default, this just runs a default Minecraft Bedrock server that listens on port 19132/udp.
 
