@@ -7,7 +7,7 @@ To pull this image:
 `docker pull mbentley/minecraft`
 
 Example usage:
-`docker run -t --rm --name mc -p 19132:19132/udp mbentley/minecraft`
+`docker run -it --rm --init --name mc -p 19132:19132/udp mbentley/minecraft`
 
 By default, this just runs a default Minecraft Bedrock server that listens on port 19132/udp.
 

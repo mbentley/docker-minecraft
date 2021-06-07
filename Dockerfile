@@ -21,4 +21,4 @@ RUN apt-get update &&\
 USER mc
 WORKDIR /opt/minecraft
 ENV LD_LIBRARY_PATH="."
-CMD screen -S minecraft -m -- ./bedrock_server
+CMD ["screen","-S","minecraft","-m","--","./bedrock_server"]
