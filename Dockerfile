@@ -5,7 +5,7 @@ ARG MINECRAFT_VER
 
 RUN apt-get update &&\
   DEBIAN_FRONTEND=noninteractive apt-get install -y libcurl4 lynx screen unzip wget &&\
-  MC_BEDROCK_URL="$(lynx -dump -listonly -useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36" https://www.minecraft.net/en-us/download/server/bedrock 2>/dev/null | grep "bin-linux/bedrock-server-" | awk '{print $2}')" &&\
+  MC_BEDROCK_URL="$(lynx -dump -listonly -useragent="L_y_n_x/2.8.7dev9.1" https://www.minecraft.net/en-us/download/server/bedrock 2>/dev/null | grep "bin-linux/bedrock-server-" | awk '{print $2}')" &&\
   MC_BEDROCK_VER="$(echo "${MC_BEDROCK_URL}" | awk -F "bin-linux/bedrock-server-" '{print $2}' | awk -F '.zip' '{print $1}')" &&\
   mkdir /opt/minecraft &&\
   cd /opt/minecraft &&\
