@@ -8,7 +8,9 @@ To pull this image:
 
 ## Tags
 
-* `latest` - The `latest` tag points to the latest Bedrock tag for backwards compatibility since this was originally just a repository for Bedrock
+* `bedrock` - the latest server version for Bedrock
+  * `latest` - the `latest` tag points to the latest Bedrock tag for backwards compatibility since this was originally just a repository for Bedrock
+* `java` - the latest server version for Java
 * There are also tags for each version of minecraft which can be viewed by checking the [tag listing on Docker Hub](https://hub.docker.com/r/mbentley/minecraft/tags).
 
 ## Example Usage
