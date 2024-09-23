@@ -8,7 +8,7 @@ RUN if [ -z "${MC_JAVA_URL}" ]; then echo "ERROR: no URL to the minecraft java r
   apk --no-cache add openjdk17 &&\
   mkdir /opt/minecraft /opt/minecraft/data &&\
   cd /opt/minecraft &&\
-  wget -q "${MC_JAVA_URL}" -O "minecraft_server.jar" &&\
+  wget -nv "${MC_JAVA_URL}" -O "minecraft_server.jar" &&\
   addgroup -g 511 mc &&\
   adduser -D -u 511 -G mc -s /sbin/nologin -H -h /opt/minecraft mc &&\
   chown -R mc:mc /opt/minecraft
