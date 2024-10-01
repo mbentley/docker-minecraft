@@ -10,7 +10,7 @@ RUN if [ -z "${MC_BEDROCK_URL}" ]; then echo "ERROR: no URL to the minecraft bed
   MC_BEDROCK_VER="$(echo "${MC_BEDROCK_URL}" | awk -F "bin-linux/bedrock-server-" '{print $2}' | awk -F '.zip' '{print $1}')" &&\
   mkdir /opt/minecraft &&\
   cd /opt/minecraft &&\
-  (wget --tries 1 -T 60 -nv "$(echo "${MC_BEDROCK_URL}" | sed 's/www\.minecraft\.net\/bedrockdedicatedserver/minecraft\.azureedge\.net/g')" -O "bedrock-server-${MC_BEDROCK_VER}.zip" || wget --tries 1 -T 60 -nv "${MC_BEDROCK_URL}" -O "bedrock-server-${MC_BEDROCK_VER}.zip") &&\
+  wget --user-agent="Stop-Sucking-Microsoft" --tries 1 -T 60 -nv "${MC_BEDROCK_URL}" -O "bedrock-server-${MC_BEDROCK_VER}.zip" &&\
   unzip "bedrock-server-${MC_BEDROCK_VER}.zip" &&\
   rm "bedrock-server-${MC_BEDROCK_VER}.zip" &&\
   rm -rf /var/lib/apt/lists/* &&\
@@ -18,6 +18,7 @@ RUN if [ -z "${MC_BEDROCK_URL}" ]; then echo "ERROR: no URL to the minecraft bed
   useradd -u 511 -g 511 -d /opt/minecraft mc &&\
   chown -R mc:mc /opt/minecraft &&\
   chmod +x /opt/minecraft/bedrock_server
+  #(wget --tries 1 -T 60 -nv "$(echo "${MC_BEDROCK_URL}" | sed 's/www\.minecraft\.net\/bedrockdedicatedserver/minecraft\.azureedge\.net/g')" -O "bedrock-server-${MC_BEDROCK_VER}.zip" || wget --tries 1 -T 60 -nv "${MC_BEDROCK_URL}" -O "bedrock-server-${MC_BEDROCK_VER}.zip") &&\
 
 USER mc
 WORKDIR /opt/minecraft
