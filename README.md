@@ -1,7 +1,7 @@
 # mbentley/minecraft
 
 docker image for Minecraft Bedrock & Java editions
-based off of ubuntu:20.04 (Bedrock) & alpine:latest (Java)
+based off of ubuntu:24.04 (Bedrock) & alpine:latest (Java)
 
 To pull this image:
 `docker pull mbentley/minecraft:bedrock-latest` or `docker pull mbentley/minecraft:java-latest`
@@ -44,11 +44,11 @@ Data can be persisted by mapping `/opt/minecraft/data` from the container to a v
 ## Building this Image
 
 ### Bedrock
-In order to build this image, you must pass the `MC_BEDROCK_URL` build arg with the minecraft zip file URL. This can be obtained manually or by using `lynx`:
+In order to build this image, you must pass the `MC_BEDROCK_URL` build arg with the minecraft zip file URL. This can be obtained manually or by using `wget` or `curl`:
 
 ```
 ...
---build-arg MC_BEDROCK_URL="$(lynx -dump -listonly -nonumbers -useragent="L_y_n_x/2.8.7dev9.1" https://www.minecraft.net/en-us/download/server/bedrock 2> /dev/null | grep "bin-linux/bedrock-server-")"
+--build-arg MC_BEDROCK_URL="$(wget -q -O - "https://net-secondary.web.minecraft-services.net/api/v1.0/download/links" | jq -r '.result.links|.[]' | jq -r 'select(.downloadType == "serverBedrockLinux") | .downloadUrl')"
 ...
 ```
 
@@ -57,6 +57,6 @@ In order to build this image, you must pass the `MC_JAVA_URL` build arg with the
 
 ```
 ...
---build-arg MC_JAVA_URL="$(lynx -dump -listonly -nonumbers -useragent="L_y_n_x/2.8.7dev9.1" https://www.minecraft.net/en-us/download/server | grep '/server.jar')"
+--build-arg MC_JAVA_URL="$(wget -q -O - "https://net-secondary.web.minecraft-services.net/api/v1.0/download/links" | jq -r '.result.links|.[]' | jq -r 'select(.downloadType == "serverJar") | .downloadUrl')"
 ...
 ```

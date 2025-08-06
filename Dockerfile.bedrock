@@ -1,5 +1,5 @@
 # rebased/repackaged base image that only updates existing packages
-FROM mbentley/ubuntu:20.04
+FROM mbentley/ubuntu:24.04
 LABEL maintainer="Matt Bentley <mbentley@mbentley.net>"
 
 ARG MC_BEDROCK_URL
